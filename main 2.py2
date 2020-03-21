@@ -1,0 +1,56 @@
+def main(directory, file_name):
+"""
+input:
+    directory - str, filder of the csv file_name
+    file_name - str, name of the csv file including extention
+out:
+    new_data_list - list, list of dictionaries that contain re-formatted record
+
+
+
+import os
+import csv
+import us_state_abbrev
+
+# Initiate variables
+new_data_list = []
+fieldnames = ['Emp ID', 'First Name', 'Last Name', 'DOB', 'SSN', 'State']
+
+# Retrieve data from csv data
+with open(file_path, newline = '')
+    reader  csv.DictReader(file_in, delimiter = ',')
+    for row in reader:
+        dictionary = {}
+        dictionary['Emp ID'] = row['Emp ID']
+        first, last = row['Name'].split(' ')
+        dictionary['First Name'] = first
+        dictionary['Last'] = last
+        year, month, day = row['DOB'].split(' ')
+        dictionary['DOB'] = '/'.join([month, day, year])
+        ssn_last = row['SSN'].split('-')[2]
+        ssn_hidden = '***-**-' + ssn_last
+        dictionary['SSN'] = ssn_hidden
+        state_abbrev = us_state_abbrev.us_state_abbrev[row['State']]
+        dictionary['State'] = us_state_abbrev
+        new_data_list.append(dictionary)
+
+output_file_path = file_name.split('.')[0] +'_out.csv'
+
+with open(output_file_path, 'w', newline='') as file_out:
+     writer = csv.DictWriter(file_out, filednames = fieldnames)
+     writer.writeheader()
+     writer.writerow(new_data_list)
+
+     for line in new_data_list:
+        print(f"{line['Emp ID']}, {line['First Name']}, {line['Last Name']}, \{line['DOB']},{line['SSN']}, {line['State']}")
+
+        director = 'raw_data'
+        file_name = 'employee_data.csv'
+        main(directory, file_name)
+
+        directory = 'raw_data'
+        file_name = 'employee_data2.scv'
+        man(directory, file_name)
+
+
+
